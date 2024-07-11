@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 dev-front:
-	@cargo watch -x 'run front'
+	@cargo watch -x 'run -p front'
 
 tw-dev:
 	@cd apps/front && \

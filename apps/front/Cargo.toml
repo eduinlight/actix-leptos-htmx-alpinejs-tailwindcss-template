@@ -14,9 +14,3 @@ env_logger="0.10.0"
 leptos = "0.4.5"
 actix-files = { version = "0.6.2", features = ["actix-server"] }
 
-[profile.release]
-strip = true
-opt-level = "z"
-lto = true
-codegen-units = 1
-panic = "abort"
