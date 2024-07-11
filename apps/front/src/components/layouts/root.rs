@@ -10,7 +10,6 @@ pub fn RootLayout(
     <html lang="en">
       <head>
         <title>{title.unwrap_or("Todos".to_string())}</title>
-        <script src="https://unpkg.com/htmx.org@1.9.3"></script>
         <link rel="stylesheet" href="/static/styles.css" />
       </head>
       <body>
@@ -18,6 +17,8 @@ pub fn RootLayout(
         <div id="root">
           {children(cx)}
         </div>
+        <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+        <script src="/static/live_reload.js"></script>
       </body>
     </html>
   }
