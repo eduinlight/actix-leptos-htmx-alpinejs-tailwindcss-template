@@ -1,0 +1,22 @@
+[package]
+name = "front"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+utils = { path = "../../libs/utils/" }
+actix-web = "4.8.0"
+actix-web-actors = "4.3.0"
+serde = "1.0.204"
+dotenv="0.15.0"
+once_cell="1.18.0"
+env_logger="0.10.0"
+leptos = "0.4.5"
+actix-files = { version = "0.6.2", features = ["actix-server"] }
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
