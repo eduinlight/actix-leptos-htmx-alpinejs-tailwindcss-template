@@ -2,8 +2,9 @@ use leptos::*;
 
 #[component]
 pub fn RootLayout(
-  #[prop(optional)] title: Option<String>,
-  #[prop()] live_reload: bool,
+  #[prop(default = "Todos".to_string())] title: String,
+  live_reload: bool,
+  styles_id: String,
   children: Children,
 ) -> impl IntoView {
   let live_reload_script = if live_reload {
@@ -11,10 +12,11 @@ pub fn RootLayout(
   } else {
     None
   };
+
   view! {
     <html lang="en">
       <head>
-        <title>{title.unwrap_or("Todos".to_string())}</title>
+        <title>{title}</title>
         <link rel="stylesheet" href="/static/styles.css" />
       </head>
       <body>
