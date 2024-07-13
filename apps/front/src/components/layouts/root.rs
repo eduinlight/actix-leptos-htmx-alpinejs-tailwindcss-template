@@ -4,11 +4,11 @@ use leptos::*;
 pub fn RootLayout(
   #[prop(default = "Todos".to_string())] title: String,
   live_reload: bool,
-  styles_id: String,
+  server_version: String,
   children: Children,
 ) -> impl IntoView {
   let live_reload_script = if live_reload {
-    Some(view! {<script src="/static/live_reload.js"></script>})
+    Some(view! {<script src=format!("/static/live_reload.js?{}", server_version)></script>})
   } else {
     None
   };
@@ -17,7 +17,7 @@ pub fn RootLayout(
     <html lang="en">
       <head>
         <title>{title}</title>
-        <link rel="stylesheet" href="/static/styles.css" />
+        <link rel="stylesheet" href=format!("/static/styles.css?{}", server_version) />
       </head>
       <body>
         <noscript>"You need to enable JavaScript to run this app."</noscript>

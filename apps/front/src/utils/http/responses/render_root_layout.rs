@@ -22,7 +22,7 @@ where
   let body: String;
   let settings = data.lock().unwrap();
   let live_reload = settings.environment == Environment::DEVELOPMENT;
-  let styles_id = settings.server_version.clone();
+  let server_version = settings.server_version.clone();
   if is_htmx_request(req) {
     body = leptos::ssr::render_to_string(render_page).to_string();
   } else {
@@ -31,9 +31,9 @@ where
       leptos::ssr::render_to_string(move || {
         view! {
           <RootLayout
-            title=title
-            live_reload=live_reload
-            styles_id=styles_id
+            title
+            live_reload
+            server_version
           >
             {render_page()}
           </RootLayout>
