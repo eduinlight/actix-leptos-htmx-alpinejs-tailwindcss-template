@@ -2,11 +2,16 @@ use leptos::*;
 
 #[component]
 pub fn RootLayout(
-  cx: Scope,
   #[prop(optional)] title: Option<String>,
+  #[prop()] live_reload: bool,
   children: Children,
 ) -> impl IntoView {
-  view! { cx,
+  let live_reload_script = if live_reload {
+    Some(view! {<script src="/static/live_reload.js"></script>})
+  } else {
+    None
+  };
+  view! {
     <html lang="en">
       <head>
         <title>{title.unwrap_or("Todos".to_string())}</title>
@@ -15,10 +20,10 @@ pub fn RootLayout(
       <body>
         <noscript>"You need to enable JavaScript to run this app."</noscript>
         <div id="root">
-          {children(cx)}
+          {children()}
         </div>
         <script src="https://unpkg.com/htmx.org@1.9.3"></script>
-        <script src="/static/live_reload.js"></script>
+        {live_reload_script}
       </body>
     </html>
   }

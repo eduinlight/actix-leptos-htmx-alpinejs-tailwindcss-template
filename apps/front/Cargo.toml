@@ -11,7 +11,7 @@ serde = "1.0.204"
 dotenv="0.15.0"
 once_cell="1.18.0"
 env_logger="0.10.0"
-leptos = "0.4.5"
+leptos = "0.6.12"
 actix-files = { version = "0.6.2", features = ["actix-server"] }
 actix = "0.13.5"
 [dependencies.uuid]

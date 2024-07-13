@@ -1,5 +1,7 @@
 function connect() {
-  const ws = new WebSocket('/ws-live-reload')
+  const liveReloadWs = "/live-reload/ws"
+  const liveReloadRefresh = "/live-reload/refresh"
+  const ws = new WebSocket(liveReloadWs)
   const LIVE_RELOAD_SERVER_VERSION_KEY="live-reload-server-version"
 
   ws.addEventListener('open', () => {
@@ -14,10 +16,7 @@ function connect() {
     localStorage.setItem(LIVE_RELOAD_SERVER_VERSION_KEY, serverVersion) 
 
     if(serverVersion !== previousVersion){
-      htmx.ajax('GET', location.pathname, {
-        target: "#root",
-        swap: "innerHTML"
-      })
+      htmx.ajax('GET', liveReloadRefresh)
     }
   })
 
