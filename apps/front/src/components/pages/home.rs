@@ -9,7 +9,7 @@ pub fn Home() -> impl IntoView {
         hx-target="#root"
         hx-swap="innerHTML"
       >
-      this allways
+        Nice
       </button>
     </div>
   }

@@ -8,7 +8,7 @@ use actix_web::{
 };
 use actix_web_actors::ws;
 
-use crate::{settings::Settings, utils::http::headers::get_referer_header};
+use crate::settings::Settings;
 
 struct LiveReloadWS {
   server_version: String,

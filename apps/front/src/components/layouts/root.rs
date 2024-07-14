@@ -12,12 +12,11 @@ pub fn RootLayout(
   } else {
     None
   };
-
   view! {
     <html lang="en">
       <head>
         <title>{title}</title>
-        <link rel="stylesheet" href=format!("/static/styles.css?{}", server_version) />
+        <link rel="stylesheet" href=format!("/static/styles.css?version={}", server_version) />
       </head>
       <body>
         <noscript>"You need to enable JavaScript to run this app."</noscript>
@@ -25,6 +24,7 @@ pub fn RootLayout(
           {children()}
         </div>
         <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+        <script src=format!("/static/main.js?version={}", server_version)></script>
         {live_reload_script}
       </body>
     </html>
