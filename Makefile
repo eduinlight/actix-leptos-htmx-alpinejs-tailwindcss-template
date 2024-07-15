@@ -8,16 +8,16 @@ front-dev:
 
 js-dev:
 	@cd apps/front && \
-	bun build input.js --outdir ./static --entry-naming main.js
+	bun build index.js --outdir ./static --entry-naming main.js
 
-js-dev:
+js-prod:
 	@cd apps/front && \
-	bun build input.js --outdir ./static --entry-naming main.js --minify
+	bun build index.js --outdir ./static --entry-naming main.js --minify
 
 css-dev:
 	@cd apps/front && \
-	tailwindcss -c tailwind.config.js -i input.css -o ./static/styles.css
+	tailwindcss -c tailwind.config.js -i styles.css -o ./static/styles.css
 
 css-prod:
 	@cd apps/front && \
-	tailwindcss -c tailwind.config.js -i input.css -o ./static/styles.css --minify
+	tailwindcss -c tailwind.config.js -i styles.css -o ./static/styles.css --minify

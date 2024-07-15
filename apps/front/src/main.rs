@@ -3,7 +3,7 @@ extern crate dotenv;
 use std::sync::Mutex;
 
 use actix_files as fs;
-use actix_web::middleware::Logger;
+use actix_web::middleware::{Compress, Logger};
 use actix_web::web::Data;
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
@@ -28,6 +28,7 @@ async fn main() -> std::io::Result<()> {
     let mut app = App::new()
       .app_data(data.clone())
       .wrap(Logger::default())
+      .wrap(Compress::default())
       .service(
         fs::Files::new("/static", "./apps/front/static")
           .show_files_listing()

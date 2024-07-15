@@ -1,5 +1,5 @@
 {
   "name": "front",
-  "module": "input.js",
+  "module": "index.js",
   "type": "module"
 }

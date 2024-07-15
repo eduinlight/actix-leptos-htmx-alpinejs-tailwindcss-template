@@ -558,6 +558,14 @@ video {
   position: static;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .rounded-md {
   border-radius: 0.375rem;
 }

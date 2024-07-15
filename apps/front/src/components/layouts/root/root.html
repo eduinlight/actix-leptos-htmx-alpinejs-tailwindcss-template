@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="static/styles.css?version={{server_version}}" />
+</head>
+
+<body>
+  <noscript>"You need to enable JavaScript to run this app."</noscript>
+  <div id="root">
+    {{children | safe}}
+  </div>
+  <script src="https://unpkg.com/htmx.org@1.9.3"></script>
+  <script src="/static/main.js?version={{server_version}}"></script>
+  {% if live_reload %}
+  <script src="static/live_reload.js?{{server_version}}"></script>
+  {% endif %}
+</body>
+
+</html>
