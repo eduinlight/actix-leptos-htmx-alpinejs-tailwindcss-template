@@ -1,4 +1,4 @@
-# front (work in progress)
+# front
 
 To install dependencies:
 
