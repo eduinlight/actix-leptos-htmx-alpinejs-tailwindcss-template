@@ -20,6 +20,7 @@ pub fn render_root_layout(
   let response: HttpResponse;
   let settings = data.lock().unwrap();
   let live_reload = settings.environment == Environment::DEVELOPMENT;
+  let live_reload_port = settings.live_reload_port;
   let server_version = settings.server_version.clone();
   match page {
     Ok(body) => {
@@ -29,6 +30,7 @@ pub fn render_root_layout(
           .body(body);
       } else {
         match root_layout(RootLayoutProps {
+          live_reload_port,
           live_reload,
           server_version,
           title,
@@ -39,11 +41,11 @@ pub fn render_root_layout(
               .content_type(ContentType::html())
               .body(body);
           }
-          _ => response = http_internal_server_error(None),
+          Err(e) => response = http_internal_server_error(e),
         }
       }
     }
-    _ => response = http_internal_server_error(None),
+    Err(e) => response = http_internal_server_error(e),
   }
   response
 }

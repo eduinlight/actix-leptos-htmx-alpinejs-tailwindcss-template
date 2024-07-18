@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 
 # FRONT
-front-dev:
+front-dev: live-reload
 	@cargo watch -s './scripts/start-front-dev.sh' \
 		--ignore apps/front/static/styles.css \
 		--ignore apps/front/static/main.js
@@ -21,3 +21,6 @@ css-dev:
 css-prod:
 	@cd apps/front && \
 	tailwindcss -c tailwind.config.js -i styles.css -o ./static/styles.css --minify
+
+live-reload:
+	@cargo run -p live-reload& 

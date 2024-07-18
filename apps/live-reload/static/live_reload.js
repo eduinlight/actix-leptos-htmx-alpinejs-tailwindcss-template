@@ -1,8 +1,6 @@
 function connect() {
-  const liveReloadWs = "/live-reload/ws"
-  const liveReloadRefresh = "/live-reload/refresh"
-  const ws = new WebSocket(liveReloadWs)
-  const LIVE_RELOAD_SERVER_VERSION_KEY="live-reload-server-version"
+  const liveReloadServer = "http://localhost:4000/ws"
+  const ws = new WebSocket(liveReloadServer)
 
   ws.addEventListener('open', () => {
     ws.send("")
@@ -10,21 +8,17 @@ function connect() {
   })
 
   ws.addEventListener('message', (message) => {
-    const serverVersion = message.data
-    const previousVersion = localStorage.getItem(LIVE_RELOAD_SERVER_VERSION_KEY)
-
-    localStorage.setItem(LIVE_RELOAD_SERVER_VERSION_KEY, serverVersion) 
-
-    if(serverVersion !== previousVersion){
-      htmx.ajax('GET', liveReloadRefresh)
-    }
+    htmx.ajax('GET', location.pathname, {
+      target: "#root",
+      swap: "innerHTML"
+    })
   })
 
   ws.addEventListener('close', (e) => {
     console.log('Live reload socket is closed. Reconnect will be attempted in 1 second.', e.reason)
     setTimeout(function() {
       connect()
-    }, 1000)
+    }, 400)
   })
 
   ws.addEventListener('error', (err) => {

@@ -15,7 +15,7 @@
   <script src="https://unpkg.com/htmx.org@1.9.3"></script>
   <script src="/static/main.js?version={{server_version}}"></script>
   {% if live_reload %}
-  <script src="static/live_reload.js?{{server_version}}"></script>
+  <script src="http://localhost:{{ live_reload_port }}/static/live_reload.js?{{server_version}}"></script>
   {% endif %}
 </body>
 
